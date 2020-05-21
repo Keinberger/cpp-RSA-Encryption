@@ -1,8 +1,16 @@
 #include <iostream>
 #include <math.h>
 #include <regex>
-#include "../math/calculation.cpp"
 using namespace std;
+
+// getPowerAndMod returns the modular of a number z, being the result of 
+// x to the power of y
+int getPowerAndMod(int x, int y, int z) {
+  long long u;
+  u = pow(x,y);
+  u = u % z;
+  return u;
+}
 
 // numberise() replaces a string with a series of numbers
 int* numberise(string input) {
@@ -10,7 +18,7 @@ int* numberise(string input) {
     int n = sizeof(alph)/sizeof(alph[0]);
     int length = input.length() - 1;
     char word[length];
-    int alphabetised[length];
+    int* alphabetised = new int[length];
 
     for (int i=0; i<=length; i++) {
         word[i] = tolower(input[i]);
@@ -24,10 +32,19 @@ int* numberise(string input) {
             break;
         }
 
-        int pos = distance(alph, itr);
-        cout << i << ": " << pos << endl;
+        int pos = distance(alph, itr) + 1;
         alphabetised[i] = pos;
     }
 
     return alphabetised;
+}
+
+int* encrypt(int inputArray[], int a, int n, int length) {
+    int* hashed = new int[length];
+
+    for (int i=0; i<=length; i++) {
+        hashed[i] = getPowerAndMod(inputArray[i], a, n);
+    }
+    
+    return hashed;
 }
