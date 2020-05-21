@@ -2,8 +2,10 @@
 #include <math.h>
 #include <time.h>
 #include <typeinfo>
+#include <cstdlib>
 #include "math/calculation.cpp"
 #include "crypto/cryptography.cpp"
+#include "others/others.cpp"
 using namespace std;
 
 // main function of program
@@ -18,14 +20,15 @@ int main() {
   long long b;
   string ans, msg, result;
 
+  clearWindow();
+
   // welcome message and explanation of rsa
-  system("clear"); // Only works with unix systems
   cout << "Welcome to the RSA Encryption \n\n";
   cout << "Let's start with a question: \n";
   cout << "Do you want to know the variables? \n";
   cout << "If you do, type 'y', otherwise type 'n' and press enter. \n";
   cin >> ans;
-  system("clear"); // Only works with unix systems
+  clearWindow();
 
   // the do-while is just a measure, to ensure that b 
   // is not greater than or equal to 11
@@ -66,21 +69,30 @@ int main() {
   len = msg.length() - 1;
 
   // numberising message
+  // this is necessary, otherwise
   x = numberise(msg);
 
   // encrypting the message
   y = encrypt(x,a,n,len);
-  cout << endl << " Encrypted message: '";
-  for (int i = 0; i<=len; i++) {
-    cout << y[i];
+
+  // outputting the actual encrypted numbers
+  if(ans == "y") {
+      cout << endl << " Encrypted message: '";
+      for (int i = 0; i<=len; i++) {
+        cout << y[i];
+      }
+      cout << "'" << endl;
+  } 
+  else // outputting the encrypted message (only array)
+  {
+      cout << endl << " Encrypted message: '" << y << "'";
   }
-  cout << "'" << endl;
 
   // decrypting the message
   b = getModInverse(a,m);
   z = decrypt(y,b,n,len);
   result = alphabetise(z,len+1);
 
-  // 
-  cout << endl << " Decrypted message: '" << result << "'" << endl;
+  // outputtings the decrypted message
+  cout << endl << " Decrypted message: '" << result << "'" << endl << endl;
 }
