@@ -3,6 +3,7 @@
 #include <time.h>
 #include <typeinfo>
 #include "math/calculation.cpp"
+#include "crypto/cryptography.cpp"
 using namespace std;
 
 // main function of program
@@ -10,15 +11,18 @@ using namespace std;
 int main() {
 
   srand((unsigned int)time(NULL));
-  int p, q, x, n, m, a, y, z;
+  int p, q, n, m, a, len;
+  int* x; 
+  int* y; 
+  int* z;
   long long b;
-  string ans;
+  string ans, msg, result;
 
   // welcome message and explanation of rsa
   system("clear"); // Only works with unix systems
-  cout << "Welcome to © Philipp's great RSA Encryption \n\n";
+  cout << "Welcome to the RSA Encryption \n\n";
   cout << "Let's start with a question: \n";
-  cout << "Do you care about knowing the variables? \n";
+  cout << "Do you want to know the variables? \n";
   cout << "If you do, type 'y', otherwise type 'n' and press enter. \n";
   cin >> ans;
   system("clear"); // Only works with unix systems
@@ -48,8 +52,8 @@ int main() {
 
   // Outputting p, q, n, m, a if user wants to
   if (ans == "y") {
-    cout << "\np is: " << p << endl;
-    cout << "q is: " << q << endl;
+    cout << "\np (private key) is: " << p << endl;
+    cout << "q (public key) is: " << q << endl;
     cout << "n is: " << n << endl;
     cout << "m is: " << m << endl;
     cout << "a is: " << a << endl;
@@ -57,16 +61,26 @@ int main() {
 
   // asking the user for a message to encrypt
   // user may only choose messages in formate of numbers less than n
-  cout << "\n Your message (<" << n << "): ";
-  x = checkIfNumber(n);
+  cout << "\n Your message (latin letters only): ";
+  msg = checkIfValidInput();
+  len = msg.length() - 1;
 
-  // ecnrypting the message
-  y = getPowerAndMod(x,a,n);
-  cout << "\n Encrypted message: '" << y << "' \n";
+  // numberising message
+  x = numberise(msg);
+
+  // encrypting the message
+  y = encrypt(x,a,n,len);
+  cout << endl << " Encrypted message: '";
+  for (int i = 0; i<=len; i++) {
+    cout << y[i];
+  }
+  cout << "'" << endl;
 
   // decrypting the message
   b = getModInverse(a,m);
-  z = getPowerAndMod(y,b,n);
-  cout << "\n Decrypted message: '" << z << "'\n\n";
+  z = decrypt(y,b,n,len);
+  result = alphabetise(z,len+1);
 
+  // 
+  cout << endl << " Decrypted message: '" << result << "'" << endl;
 }
