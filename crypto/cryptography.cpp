@@ -6,8 +6,7 @@ using namespace std;
 char alph[] = "abcdefghijklmnopqrstuvwxyz";
 int n = sizeof(alph)/sizeof(alph[0]);
 
-// getPowerAndMod returns the modular of a number z, being the result of 
-// x to the power of y
+// getPowerAndMod returns the modular of a number z, being the result of x to the power of y
 int getPowerAndMod(int x, int y, int z) {
   long long u;
   u = pow(x,y);
@@ -15,12 +14,9 @@ int getPowerAndMod(int x, int y, int z) {
   return u;
 }
 
-string checkIfValidInput() {
-    string msg;
-    bool insideArray = true;
-    int len = msg.length();
-
-    cin >> msg;
+// checkIfLatin() checks given input for being only latin letters
+bool checkIfLatin(string msg) {
+    bool insideArray;
     for(int i= 0; i < msg.length(); i++) {
         bool inside = find(begin(alph), end(alph), msg[i]) != end(alph);
         if (!inside) {
@@ -30,10 +26,22 @@ string checkIfValidInput() {
             insideArray = true;
         }
     }
-    while (cin.fail() || !insideArray) {
+    return insideArray;
+}
+
+// checkIfValidInput() checks if the user input is valid, otherwise returns and repeats the input question
+string checkIfValidInput() {
+    string msg;
+    bool insideArray = true;
+    int len = msg.length();
+
+    cin >> msg;
+    insideArray = checkIfLatin(msg);
+    if (cin.fail() || !insideArray) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
         cout << "\n Your message (latin letters only): ";
+        insideArray = checkIfLatin(msg);
         cin >> msg;
     }
     return msg;
@@ -51,11 +59,6 @@ int* numberise(string input) {
 
     for (int i=0; i<=length; i++) {
         auto itr = find(alph, alph + n, word[i]);
-        
-        if(itr == end(alph)) {
-            cout << "Error: You may use latin characters only!";
-            break;
-        }
 
         int pos = distance(alph, itr) + 1;
         numberised[i] = pos;
@@ -64,6 +67,7 @@ int* numberise(string input) {
     return numberised;
 }
 
+// alphabetise() alphabetises a given array of numbers to letters
 string alphabetise(int inputNumbers[], int length) {
     char word[length];
     string result;
@@ -79,6 +83,7 @@ string alphabetise(int inputNumbers[], int length) {
     return result;
 }
 
+// encrypt() uses getPowerAndMod() to encrypt the given values inside of array using the private Key
 int* encrypt(int inputArray[], int a, int n, int length) {
     int* hashed = new int[length];
 
@@ -89,6 +94,7 @@ int* encrypt(int inputArray[], int a, int n, int length) {
     return hashed;
 }
 
+// decrypt() uses getPowerAndMod() to decrypt the given values inside of array using the public Key
 int* decrypt(int encrypted[], long long b, int n, int length) {
     int* decrypted = new int[length];
 
