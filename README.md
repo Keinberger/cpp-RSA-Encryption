@@ -2,8 +2,12 @@
 
 ## Requirements
 
-The program is only going to work if operating system is unix.
+Program requires C++ preinstalled.
 
 ## Usage
 
-Start the program by clicking on the RSA build. You can choose if you want to see the variables by typing ‘y’. If you type ’n’ or anything else, the variables are not going to be shown.
+Run main.cpp, afterwards you may choose to know the individual variables (by typing 'y' or 'n'), including the automatically generated private and public key used by RSA. Then, you can choose a word, that you want to encrypt. The programm will automatically encrypt the message for you and print the encrypted version.
+
+## Important
+
+The program only supports input messages, consisting of latin letters only. Furthermore, the encryption won't work with spaces.
