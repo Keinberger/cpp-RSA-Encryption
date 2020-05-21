@@ -45,25 +45,3 @@ int checkIfSame(int x, int y) {
   }
   return u;
 }
-
-// checkIfNumber checks if the user input is a number or smaller than n
-int checkIfNumber(int n) {
-    int x;
-    cin >> x;
-    while(x >= n || x <= n*-1 || cin.fail()) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
-        cout << "\n Your message (<" << n << "): ";
-        cin >> x;
-    }
-    return x;
-}
-
-// getPowerAndMod returns the modular of a number z, being the result of 
-// x to the power of y
-int getPowerAndMod(int x, int y, int z) {
-  long long u;
-  u = pow(x,y);
-  u = u % z;
-  return u;
-}
