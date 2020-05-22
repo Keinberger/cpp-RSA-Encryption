@@ -10,4 +10,4 @@ Run main.cpp, afterwards you may choose to know the individual variables (by typ
 
 ## Important
 
-The program only supports input messages, consisting of latin letters only. Furthermore, the encryption won't work with spaces.
+The program only supports input messages, consisting of latin letters only.
