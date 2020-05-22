@@ -93,6 +93,6 @@ int main() {
   z = decrypt(y,b,n,len);
   result = alphabetise(z,len+1);
 
-  // outputtings the decrypted message
+  // outputting the decrypted message
   cout << endl << " Decrypted message: '" << result << "'" << endl << endl;
 }
