@@ -32,19 +32,19 @@ bool checkIfLatin(string msg) {
 // checkIfValidInput() checks if the user input is valid, otherwise returns and repeats the input question
 string checkIfValidInput() {
     string msg;
-    int len = msg.length();
 
     cin.ignore();
     getline(cin,msg);
 
     bool insideArray = checkIfLatin(msg);
-    while (cin.fail() || !insideArray) {
+    while (cin.fail() || !checkIfLatin(msg)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
         cout << "\n Your message (latin letters only): ";
         getline(cin,msg);
-        insideArray = checkIfLatin(msg);
+        //insideArray = checkIfLatin(msg);
     }
+    
     return msg;
 }
 
