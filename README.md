@@ -1,4 +1,4 @@
-### RSA by Philipp
+### RSA Word Encryption
 
 ## Requirements
 
