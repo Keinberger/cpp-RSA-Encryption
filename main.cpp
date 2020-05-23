@@ -64,7 +64,11 @@ int main() {
 
   // asking the user for a message to encrypt
   // user may only choose messages in formate of numbers less than n
-  cout << "\n Your message (latin letters only): ";
+  if(n >= 45) {
+    cout << "\n Your message (lowercase letters only): ";
+  } else {
+    cout << "\n Your message (latin lowercase letters only): ";
+  }
   msg = checkIfValidInput();
   len = msg.length() - 1;
 
@@ -76,17 +80,11 @@ int main() {
   y = encrypt(x,a,n,len);
 
   // outputting the actual encrypted numbers
-  if(ans == "y") {
-      cout << endl << " Encrypted message: '";
-      for (int i = 0; i<=len; i++) {
-        cout << y[i];
-      }
-      cout << "'" << endl;
-  } 
-  else // outputting the encrypted message (only array)
-  {
-      cout << endl << " Encrypted message: '" << y << "'";
+  cout << endl << " Encrypted message: '";
+  for (int i = 0; i<=len; i++) {
+    cout << y[i];
   }
+  cout << "'" << endl;
 
   // decrypting the message
   b = getModInverse(a,m);

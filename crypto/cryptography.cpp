@@ -3,7 +3,7 @@
 #include <regex>
 using namespace std;
 
-char alph[] = "abcdefghijklmnopqrstuvwxyz äüß!?*'#+-";
+char alph[] = "abcdefghijklmnopqrstuvwxyz äöüß!?*'#+-.,";
 int n = sizeof(alph)/sizeof(alph[0]);
 
 // getPowerAndMod returns the modular of a number z, being the result of x to the power of y
@@ -40,7 +40,7 @@ string checkIfValidInput() {
     while (cin.fail() || !insideArray) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
-        cout << "\n Your message (latin letters only): ";
+        cout << "\n Your message (latin lowercase letters only): ";
         getline(cin,msg);
         insideArray = checkIfLatin(msg);
     }
