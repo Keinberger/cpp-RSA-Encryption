@@ -65,7 +65,7 @@ int main() {
   // asking the user for a message to encrypt
   // user may only choose messages in formate of numbers less than n
   if(n >= 45) {
-    cout << "\n Your message (lowercase letters only: ";
+    cout << "\n Your message (lowercase letters only): ";
   } else {
     cout << "\n Your message (latin lowercase letters only): ";
   }
