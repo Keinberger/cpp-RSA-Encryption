@@ -55,8 +55,8 @@ int main() {
 
   // Outputting p, q, n, m, a if user wants to
   if (ans == "y") {
-    cout << "\np (private key) is: " << p << endl;
-    cout << "q (public key) is: " << q << endl;
+    cout << "\np is: " << p << endl;
+    cout << "q is: " << q << endl;
     cout << "n is: " << n << endl;
     cout << "m is: " << m << endl;
     cout << "a is: " << a << endl;
