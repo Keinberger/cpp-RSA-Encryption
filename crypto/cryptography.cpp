@@ -3,7 +3,7 @@
 #include <regex>
 using namespace std;
 
-char alph[] = "abcdefghijklmnopqrstuvwxyz äöüß!?*'#+-.,";
+char alph[] = "abcdefghijklmnopqrstuvwxyz äöüß!?*'#+-.";
 int n = sizeof(alph)/sizeof(alph[0]);
 
 // getPowerAndMod returns the modular of a number z, being the result of x to the power of y
